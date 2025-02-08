@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to create falling petals
     function createPetalAnimation() {
-        for (let i = 0; i < 300; i++) { // Reduced number to avoid lag
+        for (let i = 0; i < 500; i++) { // Reduced number to avoid lag
             let petal = document.createElement("div");
             petal.classList.add("petal");
             document.body.appendChild(petal);

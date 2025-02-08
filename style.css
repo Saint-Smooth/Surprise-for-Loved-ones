@@ -347,7 +347,7 @@ keep just in case i wanna play with the heart	transform: translate(-10%, -30%) r
 		background-size: contain;
 		background-repeat: no-repeat;
 		opacity: 1;
-		animation: fall 10s linear forwards;
+		animation: fall 15s linear forwards;
 		pointer-events: none; /* Prevents interference with clicks */	
 	}
 	#toggleMusic {

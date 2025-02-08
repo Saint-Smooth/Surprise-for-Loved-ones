@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>A surprise for you my love</title>
+
+		<!--css file-->
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<audio id="bgMusic">
+			<source src="music/Careless.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		<button id="toggleMusic">🎵 Play Music</button>
+		
+
+		<div class = "popup">	
+			<div class = "popup-content">
+				<p> Touch the heart to reveal your message! </p>
+				<button id = "closePopup">OK</button>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="envelope">
+				<div class="letter">
+					<div class="text">
+						<strong>~ Dear Snack Monster ~</strong>
+						<p>
+							"For what you came when i least expected, for what your smile and heart makes my day every morning. You of all can make my live shine, so its just natural to ask you
+							would you be my valentine?"
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="heart"></div>
+
+			<div class="float-text">
+				<span> I love you, Would you be my valentine?</span>
+				<div class="big-heart"></div>
+			</div>
+		</div>
+		<div class="reply-popup">
+			<div class="reply-content">
+				<p>What would be your reply?</p>
+				<button id="yesBtn">Yes</button>
+				<button id="noBtn">No</button>
+			</div>
+		</div>
+
+
+		<script src="app.js"></script>
+	</body>
+</html>

@@ -1,0 +1,373 @@
+/* Created by Tivotal */
+
+/* Google Fonts(Poppins) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+@keyframes pullOut{
+	0% {
+		bottom: 0;
+		transform: scale(1);
+		opacity: 1;
+	}
+	50% {
+		bottom: 100px;
+		transform: scale(1.5);
+		opacity: 1;
+	}
+	100% {
+		bottom: 150px;        /* Final vertical position */
+		transform: scale(2.2); /* Final size for readability */
+		opacity: 1;
+	}
+}
+@keyframes dissapear{
+	0%{
+	opacity: 1;}
+	50%{opacity: 0.5}
+	100%{opacity: 0}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    50% {opacity: 1}
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+body {
+	min-height: 100vh;
+	background: #D35B62;
+}
+.popup{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+
+}
+.popup-content{
+	font-family: "Poppins", sans-serif;
+	background: #f5edd1; /* Beige */
+	padding: 20px;
+	border: 4px solid black;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	box-shadow: 8px 8px 0px black; /* Retro high-contrast shadow */
+	border-radius: 15px;
+}
+.popup-content p {
+	margin-bottom: 15px;
+}
+#closePopup{
+	background: black;
+	color: white;
+	padding: 8px 15px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#closePopup:hover {
+	background: darkred; 
+}
+
+.wrapper {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 10%;
+	background: none;
+	box-shadow: none;
+}
+
+.wrapper .envelope {
+	position: relative;
+	width: 450px;
+	height: 230px;
+}
+.wrapper::before { /*established the background of the envelope*/
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #f5edd1; /* Beige background */
+	z-index: 1; /* Ensures it stays behind everything */
+}
+.wrapper.open::before{ /* establishes the a backround of the envelope and its transition*/
+	animation: dissapear 2.5s forwards ease-in-out;
+	animation-delay: 2s
+}
+
+
+.wrapper .envelope::before { /*controls the triangle of the envelope when closed*/
+	position: absolute;
+	content: "";
+	z-index: 4;
+	top: 0;
+	border-top: 150px solid #ecdeb8;
+	border-right: 225px solid transparent;
+	border-left: 225px solid transparent;
+	transform-origin: top;
+	transition: all 0.5s ease-in-out 0.7s;
+}
+
+.wrapper.open .envelope:before { /* open flap state */
+	transform: rotateX(180deg);
+	z-index: 0;
+	animation: dissapear 2s forwards ease-in-out;
+	animation-delay: 4s;
+}
+
+.wrapper .envelope::after { /*controls the body of the envelop*/
+	position: absolute;
+	content: "";
+	z-index: 4;
+	border-top: 150px solid transparent;
+	border-right: 225px solid #e6cfa7;
+	border-bottom: 100px solid #e6cfa7;
+	border-left: 225px solid #e6cfa7;
+}
+.wrapper.open .envelope::after {
+	z-index: 4;
+	animation: dissapear 2s forwards ease-in-out;
+	animation-delay: 2s;
+
+}
+.wrapper.open .envelope .letter {
+	animation: pullOut 2s forwards ease-in-out;
+	animation-delay: 2s; /* Optional delay to synchronize with other animations */
+}
+
+
+.envelope .letter {
+	position: absolute;
+	color: #fdf3e7;
+	width: 50%;
+	font-family: "Poppins", sans-serif;
+	height: 85%;
+	background: #fff;
+	padding: 10px 20px;
+	right: 25%;
+	bottom: 0 ;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	transition: all 1s ease-in-out;
+	z-index: 2;
+}
+
+
+.envelope .letter .text {
+	color: #222;
+	font-size: 10px;
+}
+
+.heart {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: red;
+	top: 66%;
+	left: 50%;
+	z-index: 5;
+	transform: translate(-85%, -60%) rotate(45deg);
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out 1s;
+	transform-origin: bottom;
+}
+
+/*.wrapper.open .heart { 
+keep just in case i wanna play with the heart	transform: translate(-10%, -30%) rotate(225deg);
+} */
+
+.heart:before,
+.heart:after  {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	border-radius: 50%;
+}
+
+.heart:before {
+	top: -7.5px;
+}
+
+.heart:after {
+	right: 7.5px;
+}
+
+.float-text {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-51%) scale(0);
+	/* top: -400px; */
+	top: -10px;
+	display: flex;
+	flex-wrap: nowrap;
+	white-space: nowrap;
+	align-items: center;
+	justify-content: center;
+	gap: 40px;
+	z-index: 1;
+	transition: all 1s ease-in-out;
+}
+
+.wrapper.open .float-text {
+	transform: translateX(-51%) scale(1);
+	top: -400px;
+	transition-delay: 1.2s;
+}
+
+.float-text .big-heart {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background: red;
+	transform: rotate(-45deg);
+	box-shadow: 0px 0px 50px black;
+	animation: anim 1s linear infinite;
+}
+
+.float-text .big-heart::before,
+.float-text .big-heart::after {
+	position: absolute;
+	content: "";
+	height: 80px;
+	width: 80px;
+	background: red;
+	border-radius: 50%;
+}
+
+.float-text .big-heart::before {
+	top: -50%;
+}
+
+.float-text .big-heart::after {
+	right: -50%;
+}
+
+@keyframes anim {
+	0%,
+	100% {
+		transform: scale(1) rotate(-45deg);
+	}
+	60% {
+		transform: scale(0.9) rotate(-45deg);
+	}
+}
+
+.float-text span {
+	font-family: "Dancing Script", cursive;
+	text-decoration: none;
+	border-bottom: 8px double black;
+	padding-bottom: 3px;
+	min-width: 40px;
+	margin-left: 20px;
+	color: black;
+	font-size: 70px;
+	font-weight: 600;
+	text-align: center;
+}
+	/*new animations */
+	.reply-popup {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		display: none; /* Hidden initially */
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+	}
+
+	.reply-content {
+		background: #f5edd1;
+		padding: 20px;
+		border: 4px solid black;
+		text-align: center;
+		font-size: 18px;
+		font-weight: bold;
+		box-shadow: 8px 8px 0px black;
+		border-radius: 15px;
+		font-family: "Courier New", Courier, monospace;
+	}
+
+	.reply-content button {
+		margin: 10px;
+		padding: 8px 15px;
+		font-size: 16px;
+		cursor: pointer;
+	}
+
+	#yesBtn {
+		background: green;
+		color: white;
+		border: none;
+	}
+
+	#noBtn {
+		background: darkred;
+		color: white;
+		border: none;
+	}
+
+	#noBtn:hover {
+		background: red;
+	}
+	.petal{
+		position: fixed;
+		top: -10vh;
+		width: 80px; /* Adjust size */
+		height: 80px;
+		background-image: url('images/flower.png'); /* Path to the downloaded image */
+		background-size: contain;
+		background-repeat: no-repeat;
+		opacity: 1;
+		animation: fall 8s linear forwards;
+		pointer-events: none; /* Prevents interference with clicks */	
+	}
+	#toggleMusic {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		padding: 10px 15px;
+		font-size: 16px;
+		font-weight: bold;
+		background: black;
+		color: white;
+		border: none;
+		cursor: pointer;
+		border-radius: 10px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+		transition: 0.3s;
+	}
+
+	#toggleMusic:hover {
+		background: red;
+	}
+
+
